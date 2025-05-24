@@ -1,50 +1,79 @@
 package com.generation.lojagames.model;
 
+
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Table(name = "tb_produtos")
 public class Produto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
-    private double preco;
+    private String descricao;
+
+    private String banner; 
+
+    private BigDecimal preco; 
 
     @ManyToOne
-    @JoinColumn(name = "categoria_id")
+    @JsonIgnoreProperties("produtos")
     private Categoria categoria;
+    @Version
+    private Long version;
 
-	public Long getId() {
-		return id;
-	}
+    // Getters e Setters
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public double getPreco() {
-		return preco;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+    public String getBanner() {
+        return banner;
+    }
 
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }
